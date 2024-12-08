@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnboardingView: View {
+//    @EnvironmentObject var monitor: NetworkMonitor
     @StateObject var viewModel = OnboardingViewModel()
     var body: some View {
         ZStack{
@@ -16,7 +17,6 @@ struct OnboardingView: View {
             GeometryReader{proxy in
                 Path{
                     path in
-                    
                     path.move(to: CGPoint(x: 0, y: 0))
                     path.addLine(to: CGPoint(x: proxy.size.width * 0.65, y: 0))
                     path.addLine(to: CGPoint(x: proxy.size.width * 0.35, y: proxy.size.height))

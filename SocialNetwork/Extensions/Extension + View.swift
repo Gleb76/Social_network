@@ -36,6 +36,9 @@ extension View {
             )
         )
     }
+    func getRect() -> CGRect {
+        return UIScreen.main.bounds
+    }
 }
 
 //MARK: - CornerRadiusShape and CornerRadiusStyle 
