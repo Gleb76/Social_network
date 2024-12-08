@@ -21,12 +21,13 @@ struct ContactsView: View {
 
                     Image(systemName: "plus")
                         .resizable()
-                        .frame(width: 24, height: 24)
+                        .frame(width: 20, height: 20)
                         .padding([.top, .trailing])
                 }
                 .padding(.horizontal)
 
                 SearchBar(searchText: $searchText)
+                    .cornerRadius(15)
                     .padding(.top, 10)
 
                 List {

@@ -1,9 +1,3 @@
-//
-//  EditProfileView.swift
-//  SocialNetwork
-//
-//  Created by Глеб Клыга on 8.12.24.
-//
 
 import SwiftUI
 

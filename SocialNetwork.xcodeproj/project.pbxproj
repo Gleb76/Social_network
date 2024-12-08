@@ -29,6 +29,14 @@
 		778428082D05DB91001B117B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428072D05DB91001B117B /* SearchBar.swift */; };
 		7784280A2D05DBBC001B117B /* ContactsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428092D05DBBC001B117B /* ContactsModel.swift */; };
 		7784280D2D05DBC3001B117B /* ContactsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784280B2D05DBC3001B117B /* ContactsData.swift */; };
+		778428102D05DEE1001B117B /* FeedScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784280F2D05DEE1001B117B /* FeedScreenView.swift */; };
+		778428122D05E0A0001B117B /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428112D05E0A0001B117B /* FeedCell.swift */; };
+		778428152D060506001B117B /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428142D060506001B117B /* ExploreView.swift */; };
+		778428172D061303001B117B /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428162D061303001B117B /* CircularProfileImageView.swift */; };
+		778428192D061395001B117B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428182D061395001B117B /* UserCell.swift */; };
+		7784281D2D06142B001B117B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784281C2D061424001B117B /* ProfileView.swift */; };
+		7784281F2D0616B4001B117B /* ProfileFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784281E2D0616AC001B117B /* ProfileFilter.swift */; };
+		778428232D063783001B117B /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778428222D063783001B117B /* EditProfileView.swift */; };
 		779494AC2CFEF4B1004DC997 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 779494AB2CFEF4B1004DC997 /* GoogleSignIn */; };
 		779494AE2CFEF4B1004DC997 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 779494AD2CFEF4B1004DC997 /* GoogleSignInSwift */; };
 		779494B12CFEF592004DC997 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779494B02CFEF592004DC997 /* GoogleService-Info.plist */; };
@@ -89,6 +97,14 @@
 		778428072D05DB91001B117B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		778428092D05DBBC001B117B /* ContactsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsModel.swift; sourceTree = "<group>"; };
 		7784280B2D05DBC3001B117B /* ContactsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsData.swift; sourceTree = "<group>"; };
+		7784280F2D05DEE1001B117B /* FeedScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreenView.swift; sourceTree = "<group>"; };
+		778428112D05E0A0001B117B /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		778428142D060506001B117B /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		778428162D061303001B117B /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
+		778428182D061395001B117B /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		7784281C2D061424001B117B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		7784281E2D0616AC001B117B /* ProfileFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFilter.swift; sourceTree = "<group>"; };
+		778428222D063783001B117B /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		779494AF2CFEF53B004DC997 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		779494B02CFEF592004DC997 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		779494B32CFEFA6E004DC997 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -156,6 +172,9 @@
 		772EC4DD2CCD80C40004B66C /* SocialNetwork */ = {
 			isa = PBXGroup;
 			children = (
+				7784281A2D061415001B117B /* Profile */,
+				778428132D0604F2001B117B /* Explore */,
+				7784280E2D05DEBA001B117B /* FeedScreen */,
 				778428022D05DA88001B117B /* ContactsView */,
 				778428012D05D534001B117B /* Coordinator */,
 				779494B22CFEFA12004DC997 /* Utilies */,
@@ -295,6 +314,59 @@
 			path = TestsData;
 			sourceTree = "<group>";
 		};
+		7784280E2D05DEBA001B117B /* FeedScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7784280F2D05DEE1001B117B /* FeedScreenView.swift */,
+				778428112D05E0A0001B117B /* FeedCell.swift */,
+			);
+			path = FeedScreen;
+			sourceTree = "<group>";
+		};
+		778428132D0604F2001B117B /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				778428142D060506001B117B /* ExploreView.swift */,
+				778428162D061303001B117B /* CircularProfileImageView.swift */,
+				778428182D061395001B117B /* UserCell.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		7784281A2D061415001B117B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				778428212D063765001B117B /* EditProfile */,
+				778428202D063701001B117B /* Model */,
+				7784281B2D06141D001B117B /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		7784281B2D06141D001B117B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7784281C2D061424001B117B /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		778428202D063701001B117B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7784281E2D0616AC001B117B /* ProfileFilter.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		778428212D063765001B117B /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				778428222D063783001B117B /* EditProfileView.swift */,
+			);
+			path = EditProfile;
+			sourceTree = "<group>";
+		};
 		779494B22CFEFA12004DC997 /* Utilies */ = {
 			isa = PBXGroup;
 			children = (
@@ -422,12 +494,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				778428232D063783001B117B /* EditProfileView.swift in Sources */,
 				77739B052CFCAD20002C89F1 /* SignInEmailViewModel.swift in Sources */,
 				77352FA92CCFC48000A2A615 /* ForgetPageView.swift in Sources */,
 				77CF53CA2CE0E78900A7BC93 /* AuthenticationManager.swift in Sources */,
 				77CF53CF2CE0F26E00A7BC93 /* CustomButton.swift in Sources */,
+				778428152D060506001B117B /* ExploreView.swift in Sources */,
+				7784281F2D0616B4001B117B /* ProfileFilter.swift in Sources */,
 				77638C382CCD85D700387E7C /* OnboardingViewModel.swift in Sources */,
+				778428122D05E0A0001B117B /* FeedCell.swift in Sources */,
 				77D54B7C2D021E7500C22938 /* ContactsView.swift in Sources */,
+				778428192D061395001B117B /* UserCell.swift in Sources */,
 				77638C4E2CCE7D8300387E7C /* CustomCorners.swift in Sources */,
 				778428082D05DB91001B117B /* SearchBar.swift in Sources */,
 				778428042D05DAE5001B117B /*  ContactsViewDetail.swift in Sources */,
@@ -436,6 +513,7 @@
 				77638C442CCD90D700387E7C /* NetworkMonitorAlert.swift in Sources */,
 				77638C362CCD856000387E7C /* Extension + View.swift in Sources */,
 				772EC4E12CCD80C40004B66C /* LaunchScreenView.swift in Sources */,
+				778428102D05DEE1001B117B /* FeedScreenView.swift in Sources */,
 				778428062D05DB12001B117B /* ContactsScreenView.swift in Sources */,
 				77638C342CCD852100387E7C /* Extension + Color.swift in Sources */,
 				77352FA62CCFC2FE00A2A615 /* SignInPageView.swift in Sources */,
@@ -446,8 +524,10 @@
 				77638C3C2CCD865D00387E7C /* OnboardingPageModel.swift in Sources */,
 				77D698C72CD1354800B232B7 /* LoginView.swift in Sources */,
 				779494B42CFEFA6E004DC997 /* Utilities.swift in Sources */,
+				778428172D061303001B117B /* CircularProfileImageView.swift in Sources */,
 				7784280A2D05DBBC001B117B /* ContactsModel.swift in Sources */,
 				77638C3F2CCD86B900387E7C /* OnboardingView.swift in Sources */,
+				7784281D2D06142B001B117B /* ProfileView.swift in Sources */,
 				7784280D2D05DBC3001B117B /* ContactsData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

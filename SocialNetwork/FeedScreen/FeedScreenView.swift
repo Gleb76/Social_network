@@ -1,18 +1,34 @@
-//
-//  FeedScreenView.swift
-//  SocialNetwork
-//
-//  Created by Глеб Клыга on 8.12.24.
-//
 
 import SwiftUI
 
-struct FeedScreenView: View {
+struct FeedView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                LazyVStack {
+                    ForEach(0 ... 10, id: \.self) { feed in
+                        FeedCell()
+                    }
+                }
+            }
+            .refreshable {
+                print("DEBUG: Refreshing...")
+            }
+            .navigationTitle("Social Network")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .foregroundColor(.black)
+                }
+            }
+        }
     }
 }
-
 #Preview {
-    FeedScreenView()
+    FeedView()
 }
