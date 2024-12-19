@@ -2,15 +2,17 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @StateObject var viewModel = ProfileViewModel()
     @State private var selectedFilter: ProfileFilter = .threads
     @Namespace var animation
-    
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
-                HeaderView()
+                HeaderView(user: viewModel.user)
                 
                 Button(action: {
+                    // Follow action
                 }) {
                     Text("Follow")
                         .font(.subheadline)
@@ -30,31 +32,42 @@ struct ProfileView: View {
                 }
             }
             .padding(.horizontal)
+            .onAppear {
+                Task {
+                    try await viewModel.loadCurrentUserProfile()
+                }
+            }
         }
     }
 }
 
 struct HeaderView: View {
+    var user: DBUser?
+    
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 12) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Charlie Zhork")
-                        .font(.title2)
-                        .fontWeight(.semibold)
+                if let user = user {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(user.displayName ?? "Don't have username")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                        
+                        Text(user.photoUrl ?? "No photo URL")
+                            .font(.subheadline)
+                    }
+                    Text("Some information")
+                        .font(.footnote)
                     
-                    Text("super_gleb@@gmail.com")
-                        .font(.subheadline)
+                    Text("2 followers")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                } else {
+                    Text("Loading...")
                 }
-                Text("Some information")
-                    .font(.footnote)
-                
-                Text("2 followers")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
             }
             Spacer()
-            CircularProfileImageView()
+            CircularProfileImageView(imageUrl: user?.photoUrl)
         }
     }
 }

@@ -1,9 +1,3 @@
-//
-//  AuthenticationManager.swift
-//  SocialNetwork
-//
-//  Created by Глеб Клыга on 10.11.24.
-//
 
 import Foundation
 import FirebaseAuth
@@ -11,13 +5,20 @@ import FirebaseAuth
 struct AuthDataResultModel {
     let uid: String
     let email: String?
+    let username: String?
     let photoUrl: String?
     
     init(user: User) {
         self.uid = user.uid
         self.email = user.email
+        self.username = user.displayName
         self.photoUrl = user.photoURL?.absoluteString
     }
+}
+
+enum AuthProviderOption: String {
+    case email = "password"
+    case google = "google.com"
 }
 
 final class AuthenticationManager {
@@ -31,6 +32,36 @@ final class AuthenticationManager {
         return AuthDataResultModel(user: user)
     }
     
+    func getProviders() throws -> [AuthProviderOption] {
+        guard let providerData = Auth.auth().currentUser?.providerData else {
+            throw URLError(.badServerResponse)
+        }
+        var providers: [AuthProviderOption] = []
+        for provider in providerData {
+          if let option = AuthProviderOption(rawValue: provider.providerID) {
+              providers.append(option)
+          } else {
+              assertionFailure("Provider option not found: \(provider.providerID)")
+          }
+        }
+        return providers
+    }
+    
+    func signOut() throws {
+        try Auth.auth().signOut()
+    }
+    
+    func delete() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badURL)
+        }
+        try await user.delete()
+    }
+}
+
+
+/// MARK: SIGN IN EMAIL
+extension AuthenticationManager {
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
@@ -61,7 +92,20 @@ final class AuthenticationManager {
         try await user.updateEmail(to: email)
     }
     
-    func signOut() throws {
-        try Auth.auth().signOut()
+}
+
+/// MARK: SIGN IN SSO
+extension AuthenticationManager {
+    
+    @discardableResult
+    func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
+        let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
+        return try await signIn(credential: credential)
+    }
+    
+    func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
+        let authDataResult = try await Auth.auth().signIn(with: credential)
+        return AuthDataResultModel(user: authDataResult.user)
     }
 }
+

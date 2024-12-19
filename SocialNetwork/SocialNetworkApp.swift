@@ -17,7 +17,7 @@ struct SocialNetworkApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignInPageView(viewModel: viewModel)
+            SignInPageView(showSignInView: .constant(true), viewModel: viewModel)
                 .environmentObject(monitor)
         }
     }

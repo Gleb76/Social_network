@@ -1,26 +1,13 @@
-import SwiftUI
-import FirebaseAuth
-import GoogleSignIn
-import GoogleSignInSwift
 
-@MainActor
-final class AuthenticationViewModel: ObservableObject {
-    func signIn() async throws {
-//        guard let topVC = Utilities.shared.topViewController else {
-//            throw URLError(.cannotFindHost)
-//        }
-//        let gidSignInResult = GIDSignIn.sharedInstance.signIn(withPresenting: topVC)
-//        guard let user = gidSignInResult?.user.idToken?.tokenString else {
-//            throw URLError(.badServerResponse)
-//        }
-//        let accessToken: String = gidSignInResult.user.accessToken.tokenString
-//        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-    }
-}
+import SwiftUI
+import GoogleSignInSwift
+import GoogleSignInSwift
+import FirebaseAuth
 
 
 struct SignInPageView: View {
     
+    @Binding var showSignInView: Bool
     @StateObject private var googleViewModel = AuthenticationViewModel()
     @StateObject var viewModel: SignInEmailViewModel
     @State private var points: [SIMD2<Float>] = [
@@ -28,6 +15,7 @@ struct SignInPageView: View {
         SIMD2(0.5, 1.0), SIMD2(0.7, 0.5), SIMD2(1.0, 0.7),
         SIMD2(0.0, 1.0), SIMD2(0.0, 0.5), SIMD2(0.5, 0.5)
     ]
+    @State private var navigateToProfile = false
     
     var body: some View {
         NavigationView {
@@ -110,7 +98,13 @@ struct SignInPageView: View {
                                 .foregroundColor(.gray)
                             HStack {
                                 GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .icon, state: .normal)) {
-                                    
+                                    Task {
+                                        do {
+                                            try await googleViewModel.signInGoogle()
+                                        } catch {
+                                            print(error)
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -124,6 +118,9 @@ struct SignInPageView: View {
                 )
                 .padding(.top, -140)
                 .ignoresSafeArea()
+                NavigationLink(destination: ProfileView(), isActive: $navigateToProfile) {
+                    EmptyView() 
+                }
             }
         }
     }
@@ -132,6 +129,7 @@ struct SignInPageView: View {
         do {
             try await viewModel.signIn()
             print("SignIn successful!")
+            navigateToProfile = true // Trigger navigation
         } catch {
             print("Sign in failed: \(error.localizedDescription)")
         }
@@ -192,6 +190,6 @@ struct SignInPageView: View {
     }
 }
 
-#Preview {
-    SignInPageView(viewModel: SignInEmailViewModel())
-}
+//#Preview {
+//    SignInPageView(viewModel: SignInEmailViewModel())
+//}

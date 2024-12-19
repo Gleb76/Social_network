@@ -3,21 +3,31 @@ import SwiftUI
 
 struct TabBarView: View {
     @State private var activeTab: Tab = .home
+    @State private var showSocialNetworkView = false
     let activeTintColor: Color = .purple
     
     var body: some View {
         VStack(spacing: 0) {
             TabView(selection: $activeTab) {
-                Text("Home View")
+                FeedView()
                     .tag(Tab.home)
-                Text("Chat View")
+                ExploreView()
                     .tag(Tab.chat)
-                Text("Partners View")
+                Text("")
                     .tag(Tab.partners)
-                Text("Settings View")
+                ProfileView()
                     .tag(Tab.settings)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            .onChange(of: activeTab, perform: { newValue in
+                showSocialNetworkView = activeTab == .partners
+            })
+            .sheet(isPresented: $showSocialNetworkView, onDismiss: {
+                activeTab = .home
+            }, content: {
+                SocialNetworkView()
+            })
+            .tint(.black)
             
             HStack {
                 ForEach(Tab.allCases, id: \.self) { tab in
